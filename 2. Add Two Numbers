@@ -1,0 +1,24 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def addTwoNumbers(self, l1, l2):
+        summ=0
+        head=cur=ListNode(0)
+        while l1 or l2 or summ:# if two nums sum bigger than 1, then create ListNode(1), summ is //=10, so equal to 1
+            if l1:
+                summ+=l1.val
+                l1=l1.next
+            if l2:
+                summ+=l2.val
+                l2=l2.next
+            cur.next=ListNode(summ%10)//only keep the decimal part, 1%10 = 1 ,so is equal to ListNode(1)
+            summ//=10 #  let carry items remain in the summ till next term
+            cur=cur.next
+        return head.next
+                
+        
+        
