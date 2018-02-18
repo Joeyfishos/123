@@ -1,0 +1,28 @@
+First.
+class Solution:
+    def twoSum(self, nums, target):
+        for i in range(len(nums)):
+            if target-nums[i] in nums[i+1:]:
+                return [i,nums.index(target-nums[i],i+1)]# the i+1 means start from the i+1, evade the[3,3] same number error
+
+
+
+Second:
+n=[2,7,11,15]
+for i in range(len(n)):
+    for j in range(i+1,len(n)):
+        if n[i]+n[j]==26:
+            print(i,j)
+            
+Third:
+
+class Solution:
+    def twoSum(self, nums, target):
+        dict={}
+        for i,j in enumerate(nums):
+            k=target-j
+            if k in dict:
+                return [i,dict[k]]
+            else:
+                dict[j]=i
+        
