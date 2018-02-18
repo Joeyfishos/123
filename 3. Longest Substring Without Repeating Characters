@@ -1,0 +1,11 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        start=maxx=0
+        for i,j in enumerate(s):
+            if j in s[start:i]:  # [1,2,3,4]  [start:i] not include i, so find i in this range, if found, change the start.
+                start=s.index(j,start)+1  # change the start. From the start, make start at the first repeated number's next
+            else:
+                maxx=max(maxx,i-start+1)# "abcabcbb" start from b
+        return maxx
+                
+                
