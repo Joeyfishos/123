@@ -1,0 +1,9 @@
+class Solution:
+    def median(self,data): # ~ make negation, start from 0, 0,1,2,3  and 0,-1,-2,-3 find out the median
+        data.sort()
+        half=len(data)//2
+        return (data[half] + data[~half]) / 2
+    def findMedianSortedArrays(self, nums1, nums2):
+        l=nums1+nums2
+        media=self.median(l)
+        return media
