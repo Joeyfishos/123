@@ -1,0 +1,24 @@
+class Solution:
+    def myAtoi(self, str):
+        carry=0
+        if(len(str)==0):
+            return 0
+        while(str[0]==' '): # delete all whitespace
+            str=str[1:]
+        sign=str[0]
+        if str[0]=='+' or str[0]=='-':# keep sign signal
+            str=str[1:]
+        for i in str:
+            if (i<'0' or i>'9'):# keep only number character
+                break
+            n=ord(i)-ord('0')
+            carry=carry*10+n
+        if sign=='-':
+            
+            carry=-carry
+        if carry>2**31-1:   #should be 32-digit
+            carry=2**31-1
+        if carry<-2**31:
+            carry=-2**31
+        
+        return carry
