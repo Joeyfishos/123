@@ -1,0 +1,33 @@
+class Solution:
+    def reverse(self, x):
+        n=((x > 0) - (x < 0))*int(str(abs(x))[::-1])
+        
+        return n*(abs(n)<2**31)
+        
+#         if x>=0:
+#             x=str(x)
+#             l1=[int(i) for i in x]
+#             nn=1
+#             sum=0
+#             for j in l1:
+#                 sum+=j*nn
+#                 nn*=10
+#             if abs(sum)>2**31:
+#                 return 0
+#             else:
+#                 return sum
+#         else:
+#             x=~x+1
+#             x=str(x)
+#             l1=[int(i) for i in x]
+#             nn=1
+#             sum=0
+#             for j in l1:
+#                 sum+=j*nn
+#                 nn*=10
+#             sum=~sum+1
+#             if abs(sum)>2**31:
+#                 return 0
+#             else:
+#                 return sum
+            
