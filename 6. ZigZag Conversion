@@ -1,0 +1,39 @@
+class Solution:
+    def convert(self, s, numRows):
+        # this way use the dict
+        if numRows == 1 or numRows >= len(s):
+            return s
+        l={}
+        for i in range(0,numRows):
+            l[i]=''
+        step=1
+        index=0
+        for i in s:
+            l[index]+=i
+            if index==numRows-1:
+                step=-1
+            elif index==0:
+                step=1
+            index+=step
+
+        k=''
+        for i in l:
+            k+=l[i]
+        return k
+#    this way uses the list         
+#         if numRows == 1 or numRows >= len(s):
+#             return s
+
+#         L = [''] * numRows
+#         index, step = 0, 1
+
+#         for x in s:
+#             L[index] += x
+#             if index == 0:
+#                 step = 1
+#             elif index == numRows -1:
+#                 step = -1
+#             index += step
+
+#         return ''.join(L)
+        
