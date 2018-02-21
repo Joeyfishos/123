@@ -1,0 +1,11 @@
+class Solution:
+    def romanToInt(self, s):
+        roman = {'I': 1,'V': 5 ,'X': 10,'L': 50,'C': 100,'D': 500,'M': 1000}
+        sum=0
+        for i in range(len(s)-1):  # except the last character, coz the last one always be added.
+            if roman[s[i]]>=roman[s[i+1]]:   # 'XIV' =14   X=10 the I is left of V so it's subtracted 
+                sum+=roman[s[i]]            #  treat XIV as 10+(-1)+4  when the prior is smaller, then treat as negative
+            else:                           #  treat IIX is 1+(-1)+10=10  the equal treat as positive
+                sum-=roman[s[i]]
+        return sum+roman[s[-1]]    # finally, add the last number
+                
