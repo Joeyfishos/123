@@ -1,0 +1,13 @@
+class Solution:
+    def intToRoman(self, num):
+        values = [ 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 ]# 1，4，5，9 can represent all values
+        numerals = [ "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" ]
+        
+        ans=''
+        for i,j in zip(values,numerals):
+            ans+=(num//i)*j # keep the Roman repeated by j
+            num%=i # keep the remainder
+        return ans
+        
+        
+        
