@@ -1,0 +1,13 @@
+class Solution:
+    def maxArea(self, height):
+        Maxarea=0
+        right=len(height)-1
+        left=0
+        while left<right:
+            Maxarea=max(Maxarea,min(height[left],height[right])*(right-left))
+            if height[left]<height[right]:  # move the shorter line into the middle in every step
+                left+=1# shorter width may overcome the shorter line loss
+            else:
+                right-=1
+        return Maxarea
+        
