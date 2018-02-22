@@ -1,0 +1,43 @@
+class Solution:
+    def longestCommonPrefix(self, strs):
+        """
+        :type strs: List[str]
+        :rtype: str
+        """
+        def find(fir,sec):
+            if len(fir)>len(sec):
+                fir,sec=sec,fir # keep the prior is shorter
+            for i in range(len(fir)):
+                if fir[i]!=sec[i]:
+                    return fir[:i] # if find different number, keep all before that number
+            return fir
+        
+        return functools.reduce(find,strs) if strs else ""
+    functools.reduce()
+#         def find(s,l=''):
+#             if len(s[0])==0 or len(s[1])==0:
+#                 return l
+#             else:
+#                 if s[0][0]==s[1][0]:
+#                     l+=s[0][0]
+#                     s[0]=s[0][1:]
+#                     s[1]=s[1][1:]
+#                     k=find(s,l)           
+#                     return k
+#                 else:
+#                     return l
+
+#         def allv(s,l=''):
+#             if len(s)==1:
+#                 return s[0]
+#             for i in range(1,len(s)):
+#                 x=[s[0],s[i]]
+#                 l=find(x)
+#                 s[0]=l # change the s[0] to l, keep s[0]
+#             return l
+        
+        
+        
+        
+#         return allv(strs)
+
