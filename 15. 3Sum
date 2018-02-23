@@ -25,4 +25,27 @@ class Solution:
                     
             
         
+
+        
+        #         l=[]
+#         for i in itertools.combinations(nums,3):
+#             if sum(i)==0:
+#                 l.append(list(i))
+#         l=map(sorted,l)
+#         l=set(map(tuple,l))
+#         return list(l)
+# 利用itertools来完成combination的相加       
+                
+        
+        
+        
+        
+        
+        
+        
+        
+        
+                    
+            
+        
             
