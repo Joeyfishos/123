@@ -1,0 +1,28 @@
+class Solution:
+# @param {integer} n
+# @return {string[]}
+    def generateParenthesis(self, n):
+        if not n:
+            return []
+        left, right, ans = n, n, []
+        self.dfs(left,right, ans, "")
+        return ans
+
+    def dfs(self, left, right, ans, string):
+        if right < left: # 避免过多循环 ,当出现一个左后考虑能否进入右，不能出现右边)的多于左边(的，否则return
+            return                                                # 一个左对应一个右，所以有了左就可以相对应走右，这时要判断（））情况
+        if not left and not right:                                #（左（左（左）））一直3个右，直到反到3阶左
+            ans.append(string)                                    #（（）右（））3阶走右，4阶走左
+            return                                                #（（））右（）3阶走右下，4阶走右，5阶走左
+                                                                  #（（））右））3阶走右下，4阶走右，5阶走右 2<3 直接return
+        if left:                                                  #（）（（）） 2阶走右下，3阶走左，4阶走左
+                                                                  #（）（）（） 2阶走右下，3阶走左，4阶走右,5阶走左
+                                                                  #（）（）） 2阶走右下，3阶走左，4阶走右，5阶左右，直接return
+                                                                  #（）） 2阶走右下，3阶走右，错
+                                                                  # ）  1阶走右，错 ，完成
+            self.dfs(left-1, right, ans, string + "(")
+        if right:
+            self.dfs(left, right-1, ans, string + ")")
+
+s1=Solution()
+print(s1.generateParenthesis(3))
