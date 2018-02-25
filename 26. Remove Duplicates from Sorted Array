@@ -1,0 +1,15 @@
+class Solution:
+    def removeDuplicates(self, nums):
+        res=list(set((nums)))
+        res=sorted(res)
+        nums[:] = res  # 这有bug， 必须得在暗处把nums就地给改好了，再返回len
+        return len(res)
+    
+    
+    
+# from collections import OrderedDict
+# class Solution(object):
+#     def removeDuplicates(self, nums):
+
+#         nums[:] =  OrderedDict.fromkeys(nums).keys()   # 利用orderedDict来，有序字典得key不能重复，且已是有序
+#         return len(nums)
