@@ -1,0 +1,40 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+
+    def reverseKGroup(self, head, k):
+        import functools
+        if not head:
+            return []
+        else:
+            va = []
+            ans = []
+            while head:
+                va.append(head.val)
+                head = head.next
+            unit = len(va) // k  # the unit of the sublist
+            remain = len(va) % k  # the number of remainder
+            print(va)
+            for i in range(0, unit):
+                ans.append(va[i * k:(i + 1) * k])
+            print(ans)
+            ans = map(reversed, ans)
+            ans = map(list, ans)
+            ans=list(ans)
+            if not remain == 0:
+                ans.append(va[-remain:])
+            print(ans)
+            ans=functools.reduce(lambda x,y:x+y,ans)
+        
+        new = ListNode(0)
+        dummy = new
+        for i in ans:
+            dummy.next = ListNode(i)
+            dummy = dummy.next
+        return new.next
+
+            
