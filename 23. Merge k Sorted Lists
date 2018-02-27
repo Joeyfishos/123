@@ -1,0 +1,42 @@
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+class Solution(object):
+    def mergeKLists(self, lists):
+        """
+        :type lists: List[ListNode]
+        :rtype: ListNode
+        """
+        kk = []
+        head = point = ListNode(0)
+        for l in lists:
+            while l:
+                kk.append(l.val)
+                l = l.next
+        for x in sorted(kk):
+            point.next = ListNode(x)
+            point = point.next
+        return head.next
+    
+    
+# class Solution(object):
+#     def mergeKLists(self, lists):   # list[0]=2->3->7    lsit[1]=1->8->3
+#         """
+#         :type lists: List[ListNode]  
+#         :rtype: ListNode
+#         """
+#         head = point = ListNode(0)
+#         q = PriorityQueue()
+#         for l in lists:
+#             if l:
+#                 q.put((l.val, l))  #q放进去(2,l[0]) 和（1,[l1])，因为优先队列由heapq最小堆完成，所以进去就排好序了1，2
+#         while not q.empty():
+#             val, node = q.get()    # 先拿到1的链表， 1放到point里，
+#             point.next = ListNode(val)
+#             point = point.next
+#             node = node.next# 让node拿到1的下一个8
+#             if node:
+#                 q.put((node.val, node))#如果不为空，则放入q里， 现在q里是2->3->7 和8->3来比较了，出了一个1
+#         return head.next
