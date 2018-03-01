@@ -1,0 +1,31 @@
+class Solution:
+    # to finish this question, 1st, verify row(without duplicated) 2nd, verify columns 3rd, verify square.
+    def isValidSudoku(self, board):
+        def unit_check(unit):
+            unit = [i for i in unit if i != '.']
+            return len(unit) == len(set(unit))  # use set to delete duplicated numbers
+
+        def row_check(board):
+            for row in board:
+                if not unit_check(row):
+                    return False
+            return True
+
+        def col_check(board):
+            for col in zip(*board):
+                if not unit_check(col):
+                    return False
+            return True
+
+        def is_valid_square(board):
+            for i in (0, 3, 6):
+                for j in (0, 3, 6):
+                    square = [board[x][y] for x in range(i, i + 3)
+                              for y in range(j, j + 3)]
+                    if not unit_check(square):
+                        return False
+            return True
+
+        return row_check(board) and col_check(board) and is_valid_square(board)
+
+
