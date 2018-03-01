@@ -1,0 +1,22 @@
+class Solution:
+    def combinationSum(self, candidates, target):# use dp to solve this question\
+        def dfs(candidates,target,index,path,ans):
+            candidates.sort()
+            if target==0:
+                ans.append(path)# if find, then return, move to i.next. 1122->1123
+                return
+            
+            for i in range(index,len(candidates)): # from index, coz cannot go back
+                if candidates[i]>target:# coz every target=target-nums[i],so final target depends on candidate[i]  
+                    break
+                dfs(candidates,target-candidates[i],i,path+[candidates[i]],ans)# start from index, when put the value in the path
+                # then cut that from target
+                # this for no need return, coz when for finish, it go up iterator automatically
+        ans=[]
+        index=0 # the start position in the candidates list #[1,2,3,4] coz number cannot back, delete 2,1.. kinds
+        path=[] # the combination
+        dfs(candidates,target,index,path,ans)
+        
+
+        return ans
+            
