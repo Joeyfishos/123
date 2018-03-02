@@ -1,0 +1,82 @@
+class Solution:
+    def findSubstring(self, s, words):
+        """
+        :type s: str
+        :type words: List[str]
+        :rtype: List[int]
+        """
+        def analyze(s, k, count):
+            current_count = collections.Counter( [ s[i:i+k] for i in range(0,len(s)-k+1,k) ] )#从头开始分成words类型后来比较， i从0-4 k一次走3
+            if current_count == count:
+                return True
+            return False
+        
+        if not words or not s: #若一者为空则空
+            return []
+        
+        #m = len(words)                          #words的个数
+        n = sum([len(word) for word in words])  #总长度
+        k = len(words[0])                       #单个字符的长度
+        count = collections.Counter(words)      #count words情况
+        
+        if len(s) < n:
+            return []
+        
+        result = []
+        for begin in range(0, len(s) - n + 1): #将s 分成单个字符长度的一系列组合，和count来比较
+            end = begin + n
+            if analyze(s[begin:end], k, count):#k,单字符长度，步长
+                result += begin,  # result.append(begin)
+        return result
+
+
+#     def findSubstring(self, s, words):
+        
+#         lenth=len(words[0])
+#         l = []
+#         ans = []
+#         k=[]
+#         def find(l,finds,startss,k):
+#             kaishi = l.find(finds, startss)
+#             if kaishi==-1:
+#                 return k
+#             else:
+#                 k.append(kaishi)
+#                 kk2 = kaishi + len(finds)
+#                 if kk2 >= len(l):
+#                     return k
+#                 else:
+#                     find(l,finds,kaishi + len(finds),k)
+#             return k
+#         from functools import reduce
+
+#         for i in words:
+#             lists=[]
+#             lists=find(s,i,0,lists)
+#             for start in lists:
+
+#                 if s[start:start+lenth] in words:
+#                     fack = words.copy()
+#                     l = []
+#                     for i in range(start, len(s) - lenth + 1, lenth):
+#                         if s[i:i + lenth] in fack:
+#                             fack.pop(fack.index(s[i:i + lenth]))
+#                             l.append(s[i:i + lenth])
+#                             if len(l) == len(words):
+#                                 ans.append(l)
+#                                 l = []
+#                                 break
+#                         else:
+#                             l = []
+#                             break
+#         ans=map(tuple,ans)
+#         ans = list(set(ans))
+#         ans_list=[]
+#         for i in ans:
+#             aaans=[]
+#             i=reduce(lambda x,y: x+y ,i)
+#             print(i)
+#             aaans=find(s,i,0,aaans)
+#             ans_list.append(aaans)
+#         return (sorted(reduce(lambda x,y: x+y ,ans_list)))
+
