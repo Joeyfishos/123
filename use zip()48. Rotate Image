@@ -1,0 +1,13 @@
+class Solution:
+    def rotate(self, matrix):
+        matrix[:]=list(zip(*matrix))
+        matrix[:]=map(reversed,matrix)
+        matrix[:]=map(list,matrix)
+        matrix[:]=list(matrix)
+
+        class Solution:
+    # def rotate(self, A):
+    #     A[:] = map(list, zip(*A[::-1]))
+    #     class Solution:
+    # def rotate(self, A):
+    #     A[:] = zip(*A[::-1])
