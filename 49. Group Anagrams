@@ -1,0 +1,11 @@
+class Solution:
+    def groupAnagrams(self, strs):
+        #use the collections method ->defaultdict
+        import collections
+        answer=collections.defaultdict(list)# use list
+        for i in strs:
+            answer[tuple(sorted(i))].append(i)# use the tuple to be the list's key, its a completed
+            
+        return list(answer.values())
+        
+        
